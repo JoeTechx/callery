@@ -1,28 +1,30 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import firebase from "../../firebase/firebaseConfig";
+import {auth} from "../../firebase/firebaseConfig";
 import "../signup/signup.css";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
-
-    try {
-      const user = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, pass);
-      if (user) {
-        alert("Login successfully.");
-        navigate("/callery");
-      }
-    } catch (error) {
-      alert(error.message); // alert error message
-    }
-  };
+ signInWithEmailAndPassword(auth, email, pass)
+ .then((userCredential) => {
+  alert("Login successful")
+    console.log(userCredential)
+    navigate("/callery")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage)
+    console.log(errorCode);
+    console.log(errorMessage);
+  });
+  }
   return (
     <>
       <div className="sign_up-container">

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import firebase from "../../firebase/firebaseConfig";
+import  { auth }  from "../../firebase/firebaseConfig";
 import "./signup.css";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -10,21 +11,19 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
-
-    try {
-      const user = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, pass);
-      if (user) {
+        createUserWithEmailAndPassword( auth, email, pass)
+        .then((userCredential) => {
+      if (userCredential) {
         alert("Account is successfully created.");
         navigate("/");
-      }
-    } catch (error) {
-      alert(error.message); // alert error message
-    }
-  };
+      }})
+      .catch((error) => { 
+        alert(error.message); // alert error message
+  });
+}
+
   return (
     <>
       <div className="sign_up-container">
