@@ -2,6 +2,7 @@
 :root {
 --background: #01100f;
 --text-color: #f6f6f6;
+--color: #09dbee;
 
   --container-width-lg: 80%;
   --container-width-md: 90%;
@@ -45,7 +46,6 @@ h4,
 h5,
 h6 {
   line-height: 1.2;
-  color: var(--color-gray-100);
 }
 
 h1 {
@@ -56,12 +56,49 @@ h2 {
   font-size: 2rem;
 }
 
-a {
-  color: var(--color-gray-100);
-}
-
 img {
   display: block;
   object-fit: cover;
   width: 100%;
 }
+
+.card {
+  background-color: var(--background);
+  border: 2px solid transparent;
+  text-align: center;
+  padding: 1rem 1rem;
+  border-radius: 0 3rem 0 3rem;
+  transition: var(--transition);
+}
+
+.card:hover {
+  background-color: transparent;
+  border-color: var(--color);
+  cursor: default;
+}
+
+/* .card span {
+  width: 3rem;
+  height: 3rem;
+  background: var(--color);
+  color: var(--color);
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.5rem;
+  margin-inline: auto;
+  border-radius: 1rem;
+  transition: var(--transition);
+}
+
+.card:hover span {
+  background: var(--color-secondary);
+  color: var(--color-gray-600);
+}
+
+.card small {
+  margin-top: 1rem;
+  display: block;
+  font-weight: 300;
+} */

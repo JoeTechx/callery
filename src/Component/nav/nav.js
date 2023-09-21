@@ -30,16 +30,18 @@ const Nav = () => {
         }
       });
     }, []);
-  
+
+    
     return (
       <>
   <nav className="nav_container">
      < Link to="/carllery" className="nav_logo">
       <img src={LogoWhite} alt="" className="logo"/>
      </Link>
+     
      <div className="wel_auth">
         {authUser ? (
-          <h2>Welcome {authUser.email.length > 6 ? (authUser.email.substr(0, 6)) + "..." : authUser.email}</h2>
+          <h2>Hi! {authUser.email.length > 6 ? (authUser.email.substr(0, 6)) + "..." : authUser.email}</h2>
         ) : (
           <Link to="/">login</Link>
         )

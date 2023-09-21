@@ -1,0 +1,7 @@
+.footer__copyright {
+    color: var(--color);
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid #12c2dd86;
+    margin-top: 5rem;
+  }
