@@ -1,6 +1,6 @@
 # REACT CALLERY
 <!-- PROJECT LOGO -->
-![logo black](./Assest/logo-black.png)
+![logo white](https://github.com/JoeTechx/callery/assets/81165398/bf9aa291-84a2-43cd-b600-69270c6cd192)
 This is a simple Netlify-powered React project.
 
 ## Getting Started
