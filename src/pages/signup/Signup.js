@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import  { auth }  from "../../firebase/firebaseConfig";
+import { auth } from "../../firebase/firebaseConfig";
 import "./signup.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -13,16 +13,17 @@ const Signup = () => {
 
   const submit = (e) => {
     e.preventDefault();
-        createUserWithEmailAndPassword( auth, email, pass)
-        .then((userCredential) => {
-      if (userCredential) {
-        alert("Account is successfully created.");
-        navigate("/");
-      }})
-      .catch((error) => { 
+    createUserWithEmailAndPassword(auth, email, pass)
+      .then((userCredential) => {
+        if (userCredential) {
+          alert("Account is successfully created.");
+          navigate("/");
+        }
+      })
+      .catch((error) => {
         alert(error.message); // alert error message
-  });
-}
+      });
+  };
 
   return (
     <>

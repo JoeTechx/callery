@@ -3,7 +3,7 @@ import Footer from "../../Component/footer/footer";
 import Nav from "../../Component/nav/nav";
 import { Droppable, DragDropContext, Draggable } from "react-beautiful-dnd";
 import "./callery.css";
-import { useState, forwardRef, useRef} from "react";
+import { useState, forwardRef } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 // import Card from "../../UI/card";
 // forwardRef((props, ref)
@@ -144,35 +144,32 @@ const Callery = forwardRef((props, ref) => {
 
   const handleDragEnd = (result) => {
     // dropped outside the list
-    if (!result.destination) 
-      return;
+    if (!result.destination) return;
     const items = Array.from(data);
     const [reorderData] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderData);
     setData(items);
-  }
+  };
 
   const [term, setTerm] = useState("");
   // console.log(images.filter(image => image.Tag.toLowerCase().includes(term)));
-
-
 
   return (
     <>
       <Nav />
 
-      <form>
-            <input
-              onChange={(e) => setTerm(e.target.value)}
-              type="search"
-              id="gsearch"
-              name="gsearch"
-              placeholder="Which car do want to see?"
-            />
-            <AiOutlineSearch className="search_icon" />
-          </form>
+      <form className="callery_form">
+        <input
+          onChange={(e) => setTerm(e.target.value)}
+          type="search"
+          id="gsearch"
+          name="gsearch"
+          placeholder="Which car do want to see?"
+        />
+        <AiOutlineSearch className="search_icon" />
+      </form>
       <section className="galleries">
-        <DragDropContext   onDragEnd={handleDragEnd}>
+        <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="div">
             {(provided, snapshot) => (
               <div
@@ -181,65 +178,44 @@ const Callery = forwardRef((props, ref) => {
                 {...provided.droppableProps}
               >
                 {data &&
-                  data.filter(image => image.Tag.toLowerCase().includes(term)).map((item, index) => {
-                    return (
-                      <Draggable
-                        key={item.id}
-                        draggableId={item.id.toString()}
-                        index={index}
-                      >
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            style={{ backgroundColor:snapshot.isDraggingOver ? 'blue' : 'grey' }}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className=" card gallery"
-                          >
-                            <div className="gallery_img">
-                              <img src={item.image} alt={item.Tag} />
+                  data
+                    .filter((image) => image.Tag.toLowerCase().includes(term))
+                    .map((item, index) => {
+                      return (
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id.toString()}
+                          index={index}
+                        >
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              style={{
+                                backgroundColor: snapshot.isDraggingOver
+                                  ? "blue"
+                                  : "grey",
+                              }}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              className=" card gallery"
+                            >
+                              <div className="gallery_img">
+                                <img src={item.image} alt={item.Tag} />
+                              </div>
+                              <div className="gallery_tag">
+                                <h3>{item.Tag}</h3>
+                              </div>
                             </div>
-                            <div className="gallery_tag">
-                              <h3>{item.Tag}</h3>
-                            </div>
-                          </div>
-                        )}
-                      </Draggable>
-                    );
-                  })}
-              {provided.placeholder}
+                          )}
+                        </Draggable>
+                      );
+                    })}
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
         </DragDropContext>
       </section>
-      {/* <section className="galleries">
-        <div className="container galleries_container">
-          <DragDropContext>
-            <Droppable droppableId="images">
-              {(provided) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {images.map(({ id, image, Tag }) => {
-                    return (
-                      <Draggable key={id} draggableId={id.toString()}>
-                        {(provided) => (
-                          <Gallery
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            image={image}
-                            Tag={Tag}
-                          />
-                        )}
-                      </Draggable>
-                    );
-                  })}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
-        </div>
-      </section> */}
 
       <Footer />
     </>

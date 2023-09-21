@@ -5,7 +5,7 @@ form {
   margin: 4rem auto;
 }
 
-input {
+.callery_form input {
   background: none;
   outline: none;
   width: 100%;
@@ -14,7 +14,7 @@ input {
   padding: 0.4rem 0.3rem;
   color: #dfdfdf;
 }
-input::placeholder {
+.callery_form input::placeholder {
   color: #3f5352;
 }
 
@@ -26,47 +26,46 @@ input::placeholder {
 }
 
 .galleries_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.card.gallery {
+  padding: 1rem;
+}
+
+.gallery_img {
+  border-radius: 0 2rem;
+}
+
+.gallery_img img {
+  border-radius: 0 2rem;
+}
+
+.gallery_tag h3 {
+  margin-top: 2rem;
+}
+
+/* MEDIA QUERIES (medium screens) */
+@media screen and (max-width: 1024px) {
+  .galleries_container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
   }
-  
+}
+
+/* MEDIA QUERIES (small screens) */
+@media screen and (max-width: 600px) {
+  .galleries_container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
   .card.gallery {
-    padding: 1rem;
+    width: 90%;
+    margin: 0 auto;
   }
-  
-  .gallery_img {
-    border-radius: 0 2rem;
-  }
-
-  .gallery_img img {
-    border-radius: 0 2rem;
-  }
-  
-  .gallery_tag h3 {
-    margin-top: 2rem;
-  }
-
-  
-  /* MEDIA QUERIES (medium screens) */
-  @media screen and (max-width: 1024px) {
-    .galleries_container {
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-    }
-  }
-  
-  /* MEDIA QUERIES (small screens) */
-  @media screen and (max-width: 600px) {
-    .galleries_container {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-  
-    .card.gallery {
-      width: 90%;
-      margin: 0 auto;
-    }
-  }
+}
